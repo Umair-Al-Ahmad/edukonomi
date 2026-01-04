@@ -1,7 +1,7 @@
-export default function Article() {
+export default function Course() {
   return (
     <div>
-      <h1>Ini Article</h1>
+      <h1>Ini Course</h1>
     </div>
   );
 }
