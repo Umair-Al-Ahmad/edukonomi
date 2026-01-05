@@ -23,16 +23,16 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-purple-700 via-violet-600 to-blue-600 text-white overflow-hidden mt-auto">
+    <footer className="relative bg-linear-to-br from-purple-700 via-violet-600 to-blue-600 text-white overflow-hidden mt-auto">
       {/* Top gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 z-10"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-purple-500 via-pink-500 to-purple-500 z-10"></div>
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-2 space-y-4">
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+              <div className="p-2 rounded-lg bg-linear-to-br from-purple-500 to-pink-500 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                 <BookOpen className="text-white" size={24} />
               </div>
               <h4 className="text-2xl font-bold">
