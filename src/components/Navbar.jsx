@@ -28,6 +28,14 @@ export default function Navbar() {
                 </>
               )}
             </NavLink>
+            <NavLink to="/About" className={({ isActive }) => `px-4 py-2 rounded-lg font-medium transition-colors relative ${isActive ? "text-purple-700" : "text-gray-700 hover:text-purple-700"}`}>
+              {({ isActive }) => (
+                <>
+                  Tentang
+                  {isActive && <motion.div layoutId="underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600" />}
+                </>
+              )}
+            </NavLink>
             <NavLink to="/Course" className={({ isActive }) => `px-4 py-2 rounded-lg font-medium transition-colors relative ${isActive ? "text-purple-700" : "text-gray-700 hover:text-purple-700"}`}>
               {({ isActive }) => (
                 <>
@@ -40,14 +48,6 @@ export default function Navbar() {
               {({ isActive }) => (
                 <>
                   Quiz
-                  {isActive && <motion.div layoutId="underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600" />}
-                </>
-              )}
-            </NavLink>
-            <NavLink to="/About" className={({ isActive }) => `px-4 py-2 rounded-lg font-medium transition-colors relative ${isActive ? "text-purple-700" : "text-gray-700 hover:text-purple-700"}`}>
-              {({ isActive }) => (
-                <>
-                  Tentang
                   {isActive && <motion.div layoutId="underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-purple-600" />}
                 </>
               )}
@@ -86,6 +86,13 @@ export default function Navbar() {
                     Beranda
                   </NavLink>
                   <NavLink
+                    to="/About"
+                    className={({ isActive }) => `px-4 py-3 rounded-lg font-medium ${isActive ? "text-purple-700 bg-purple-50" : "text-gray-700 hover:text-purple-700 hover:bg-purple-50"}`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Tentang
+                  </NavLink>
+                  <NavLink
                     to="/Course"
                     className={({ isActive }) => `px-4 py-3 rounded-lg font-medium ${isActive ? "text-purple-700 bg-purple-50" : "text-gray-700 hover:text-purple-700 hover:bg-purple-50"}`}
                     onClick={() => setIsOpen(false)}
@@ -94,13 +101,6 @@ export default function Navbar() {
                   </NavLink>
                   <NavLink to="/Quiz" className={({ isActive }) => `px-4 py-3 rounded-lg font-medium ${isActive ? "text-purple-700 bg-purple-50" : "text-gray-700 hover:text-purple-700 hover:bg-purple-50"}`} onClick={() => setIsOpen(false)}>
                     Quiz
-                  </NavLink>
-                  <NavLink
-                    to="/About"
-                    className={({ isActive }) => `px-4 py-3 rounded-lg font-medium ${isActive ? "text-purple-700 bg-purple-50" : "text-gray-700 hover:text-purple-700 hover:bg-purple-50"}`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Tentang
                   </NavLink>
 
                   <div className="flex flex-col space-y-3 pt-4 border-t border-gray-200 mt-2">
