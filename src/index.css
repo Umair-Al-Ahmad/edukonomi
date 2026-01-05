@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Di index.css atau global CSS */
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}

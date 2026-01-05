@@ -1,67 +1,70 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Mail, MapPin, Phone } from "lucide-react";
-import "../styles/components/footer.css";
+import { BookOpen, Mail, MapPin, Phone, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
     platform: [
-      { name: "Artikel", href: "/artikel" },
-      { name: "Quiz", href: "/quiz" },
-      { name: "Kursus", href: "#" },
-      { name: "Sertifikasi", href: "#" },
+      { name: "Modul", href: "/Course" },
+      { name: "Kuis", href: "/Quiz" },
     ],
     resources: [
-      { name: "Blog", href: "#" },
       { name: "Panduan Belajar", href: "#" },
-      { name: "FAQ", href: "#" },
       { name: "Bantuan", href: "#" },
     ],
     company: [
-      { name: "Tentang Kami", href: "/tentang" },
-      { name: "Karir", href: "#" },
+      { name: "Tentang Kami", href: "/About" },
       { name: "Kontak", href: "#" },
-      { name: "Press Kit", href: "#" },
     ],
   };
 
+  const socialMedia = [
+    { name: "Facebook", icon: Facebook, href: "https://facebook.com/edukonomi" },
+    { name: "Instagram", icon: Instagram, href: "https://instagram.com/edukonomi" },
+  ];
+
   return (
-    <footer className="edukonomi-footer py-5">
-      <div className="container">
-        <div className="row">
+    <footer className="relative bg-gradient-to-br from-purple-700 via-violet-600 to-blue-600 text-white overflow-hidden mt-auto">
+      {/* Top gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 z-10"></div>
+
+      <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
-          <div className="col-lg-4 col-md-6 mb-4">
-            <Link to="/" className="d-flex align-items-center mb-3 text-decoration-none text-white">
-              <div className="footer-logo-icon rounded p-2 me-3">
+          <div className="lg:col-span-2 space-y-4">
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                 <BookOpen className="text-white" size={24} />
               </div>
-              <h4 className="mb-0 fw-bold text-white">
-                Edu<span className="footer-accent">konomi</span>
+              <h4 className="text-2xl font-bold">
+                Edu<span className="text-yellow-300">konomi</span>
               </h4>
             </Link>
-            <p className="footer-text mb-4">Platform edukasi ekonomi terlengkap di Indonesia. Belajar ekonomi jadi lebih mudah, menyenangkan, dan efektif.</p>
-            <div className="contact-info">
-              <a href="mailto:info@edukonomi.id" className="d-flex align-items-center mb-2 footer-link">
-                <Mail size={18} className="me-2" />
-                info@edukonomi.id
+
+            <p className="text-gray-200 leading-relaxed max-w-md">Platform edukasi ekonomi terlengkap di Indonesia. Belajar ekonomi jadi lebih mudah, menyenangkan, dan efektif.</p>
+
+            <div className="space-y-3">
+              <a href="mailto:info@edukonomi.id" className="flex items-center space-x-2 text-gray-200 hover:text-yellow-300 transition-colors duration-200 group">
+                <Mail size={18} className="group-hover:scale-110 transition-transform" />
+                <span>info@edukonomi.id</span>
               </a>
-              <a href="tel:+6281234567890" className="d-flex align-items-center mb-2 footer-link">
-                <Phone size={18} className="me-2" />
-                +62 812-3456-7890
+              <a href="tel:+6281234567890" className="flex items-center space-x-2 text-gray-200 hover:text-yellow-300 transition-colors duration-200 group">
+                <Phone size={18} className="group-hover:scale-110 transition-transform" />
+                <span>+62 812-3456-7890</span>
               </a>
-              <div className="d-flex align-items-center footer-text">
-                <MapPin size={18} className="me-2" />
-                Jakarta, Indonesia
+              <div className="flex items-center space-x-2 text-gray-200">
+                <MapPin size={18} />
+                <span>Jakarta, Indonesia</span>
               </div>
             </div>
           </div>
 
           {/* Platform Links */}
-          <div className="col-lg-2 col-md-3 col-6 mb-4">
-            <h5 className="mb-3 fw-bold text-white">Platform</h5>
-            <ul className="list-unstyled">
+          <div className="space-y-4">
+            <h5 className="text-lg font-bold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-yellow-300">Platform</h5>
+            <ul className="space-y-2">
               {footerLinks.platform.map((link) => (
-                <li key={link.name} className="mb-2">
-                  <Link to={link.href} className="footer-link">
+                <li key={link.name}>
+                  <Link to={link.href} className="text-gray-200 hover:text-yellow-300 hover:translate-x-1 transition-all duration-200 inline-block">
                     {link.name}
                   </Link>
                 </li>
@@ -70,12 +73,12 @@ const Footer = () => {
           </div>
 
           {/* Resources Links */}
-          <div className="col-lg-2 col-md-3 col-6 mb-4">
-            <h5 className="mb-3 fw-bold text-white">Resources</h5>
-            <ul className="list-unstyled">
+          <div className="space-y-4">
+            <h5 className="text-lg font-bold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-yellow-300">Resources</h5>
+            <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
-                <li key={link.name} className="mb-2">
-                  <Link to={link.href} className="footer-link">
+                <li key={link.name}>
+                  <Link to={link.href} className="text-gray-200 hover:text-yellow-300 hover:translate-x-1 transition-all duration-200 inline-block">
                     {link.name}
                   </Link>
                 </li>
@@ -83,61 +86,56 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company Links */}
-          <div className="col-lg-2 col-md-3 col-6 mb-4">
-            <h5 className="mb-3 fw-bold text-white">Perusahaan</h5>
-            <ul className="list-unstyled">
-              {footerLinks.company.map((link) => (
-                <li key={link.name} className="mb-2">
-                  <Link to={link.href} className="footer-link">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Social Media & Company */}
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h5 className="text-lg font-bold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-yellow-300">Perusahaan</h5>
+              <ul className="space-y-2">
+                {footerLinks.company.map((link) => (
+                  <li key={link.name}>
+                    <Link to={link.href} className="text-gray-200 hover:text-yellow-300 hover:translate-x-1 transition-all duration-200 inline-block">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Newsletter Section (Opsional) */}
-          <div className="col-lg-2 col-md-3 col-6 mb-4">
-            <h5 className="mb-3 fw-bold text-white">Media Sosial</h5>
-            <ul className="list-unstyled">
-              <li className="mb-2">
-                <a href="https://facebook.com/edukonomi" className="footer-link" target="_blank" rel="noopener noreferrer">
-                  Facebook
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="https://twitter.com/edukonomi" className="footer-link" target="_blank" rel="noopener noreferrer">
-                  Twitter
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="https://instagram.com/edukonomi" className="footer-link" target="_blank" rel="noopener noreferrer">
-                  Instagram
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="https://youtube.com/edukonomi" className="footer-link" target="_blank" rel="noopener noreferrer">
-                  YouTube
-                </a>
-              </li>
-            </ul>
+            <div className="space-y-4">
+              <h5 className="text-lg font-bold relative pb-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-10 after:h-0.5 after:bg-yellow-300">Media Sosial</h5>
+              <div className="flex space-x-4">
+                {socialMedia.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white hover:text-yellow-300 hover:scale-110 transition-all duration-200"
+                    aria-label={social.name}
+                  >
+                    <social.icon size={20} />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Copyright Section */}
-        <div className="footer-divider pt-4 mt-4">
-          <div className="row align-items-center">
-            <div className="col-md-12 text-center">
-              <p className="footer-copyright mb-0">© {new Date().getFullYear()} Edukonomi. Hak Cipta Dilindungi.</p>
-              <div className="mt-2">
-                <Link to="/kebijakan-privasi" className="footer-link me-3">
-                  Kebijakan Privasi
-                </Link>
-                <Link to="/syarat-ketentuan" className="footer-link">
-                  Syarat & Ketentuan
-                </Link>
-              </div>
+        <div className="border-t border-white/20 mt-8 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-gray-300 text-sm">© {new Date().getFullYear()} Edukonomi. Hak Cipta Dilindungi.</p>
+
+            <div className="flex space-x-6 text-sm text-gray-300">
+              <Link to="/privacy" className="hover:text-yellow-300 transition-colors">
+                Kebijakan Privasi
+              </Link>
+              <Link to="/terms" className="hover:text-yellow-300 transition-colors">
+                Syarat & Ketentuan
+              </Link>
+              <Link to="/sitemap" className="hover:text-yellow-300 transition-colors">
+                Sitemap
+              </Link>
             </div>
           </div>
         </div>
