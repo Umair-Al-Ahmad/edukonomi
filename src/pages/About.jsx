@@ -1,4 +1,4 @@
-import { Users, Target, Award, BookOpen, Globe, Heart, Star, Shield, GraduationCap, Lightbulb } from "lucide-react";
+import { Users, Target, Award, BookOpen, Globe, Heart, Star, Shield, GraduationCap, Lightbulb, Linkedin, Instagram } from "lucide-react";
 import umair from "../assets/umair.jpg";
 
 const About = () => {
@@ -52,6 +52,57 @@ const About = () => {
               Tentang <span className="text-purple-600">Edukonomi</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">Platform edukasi ekonomi terdepan di Indonesia yang mengubah cara belajar ekonomi menjadi pengalaman yang menyenangkan dan efektif.</p>
+
+            {/* Team Section - DIUBAH: Pusatkan ke tengah */}
+            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-purple-50">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Dibentuk Oleh</h2>
+                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">Dari pembelajar, untuk pembelajar.</p>
+                </div>
+
+                {/* DIUBAH: Menggunakan flex untuk menempatkan di tengah */}
+                <div className="flex justify-center">
+                  <div className="max-w-md w-full">
+                    {teamMembers.map((member, index) => (
+                      <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                        <div className="p-8 text-center">
+                          {/* Avatar di tengah */}
+                          <div className="flex justify-center mb-6">
+                            <img src={member.avatar} alt={member.name} className="w-50 h-50 rounded-full border-4 border-purple-100 object-cover" />
+                          </div>
+
+                          {/* Nama dan Role */}
+                          <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                          <p className="text-lg text-purple-600 font-medium mb-4">{member.role}</p>
+
+                          {/* Expertise */}
+                          <div className="mb-6">
+                            <span className="inline-block px-4 py-2 text-sm font-medium bg-purple-100 text-purple-800 rounded-full">{member.expertise}</span>
+                          </div>
+
+                          {/* Bio */}
+                          <p className="text-gray-600">{member.bio}</p>
+
+                          {/* Social Icons (Optional) */}
+                          <div className="flex justify-center space-x-4 mt-6 pt-6 border-t border-gray-100">
+                            <a href="https://www.linkedin.com/in/umair-al-ahmad/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors">
+                              <span className="sr-only">LinkedIn</span>
+                              <Linkedin size={20} />
+                            </a>
+
+                            <a href="https://www.instagram.com/umair_alahmad/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors">
+                              <span className="sr-only">Instagram</span>
+                              <Instagram size={20} />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
@@ -144,57 +195,6 @@ const About = () => {
                 <p className="text-gray-600">{value.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section - DIUBAH: Pusatkan ke tengah */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-purple-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Dibentuk Oleh</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Dari pembelajar, untuk pembelajar.</p>
-          </div>
-
-          {/* DIUBAH: Menggunakan flex untuk menempatkan di tengah */}
-          <div className="flex justify-center">
-            <div className="max-w-md w-full">
-              {teamMembers.map((member, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  <div className="p-8 text-center">
-                    {/* Avatar di tengah */}
-                    <div className="flex justify-center mb-6">
-                      <img src={member.avatar} alt={member.name} className="w-50 h-50 rounded-full border-4 border-purple-100 object-cover" />
-                    </div>
-
-                    {/* Nama dan Role */}
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                    <p className="text-lg text-purple-600 font-medium mb-4">{member.role}</p>
-
-                    {/* Expertise */}
-                    <div className="mb-6">
-                      <span className="inline-block px-4 py-2 text-sm font-medium bg-purple-100 text-purple-800 rounded-full">{member.expertise}</span>
-                    </div>
-
-                    {/* Bio */}
-                    <p className="text-gray-600">{member.bio}</p>
-
-                    {/* Social Icons (Optional) */}
-                    <div className="flex justify-center space-x-4 mt-6 pt-6 border-t border-gray-100">
-                      <a href="#" className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors">
-                        <span className="sr-only">LinkedIn</span>👨‍💼
-                      </a>
-                      <a href="#" className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors">
-                        <span className="sr-only">Email</span>✉️
-                      </a>
-                      <a href="#" className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-purple-100 hover:text-purple-600 transition-colors">
-                        <span className="sr-only">Website</span>🌐
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
