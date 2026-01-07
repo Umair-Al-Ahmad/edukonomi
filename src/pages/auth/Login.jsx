@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Simulasi proses login
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -20,29 +21,37 @@ const Login = () => {
       return;
     }
 
-    if (!email.includes("@") || !email.includes(".")) {
-      setError("Format email tidak valid");
-      return;
-    }
-
-    if (password.length < 6) {
-      setError("Password minimal 6 karakter");
-      return;
-    }
-
     setIsLoading(true);
 
-    // Simulasi proses login
-    setTimeout(() => {
-      setIsLoading(false);
-      // Simulasi login berhasil
-      if (email === "demo@edukonomi.id" && password === "demo123") {
-        alert("Login berhasil! Redirect ke dashboard...");
-        navigate("/dashboard");
-      } else {
-        setError("Email atau password salah");
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Login gagal");
       }
-    }, 1500);
+
+      // 🔐 Simpan token & user
+      localStorage.setItem("token", result.data.token);
+      localStorage.setItem("user", JSON.stringify(result.data.user));
+
+      // 🚀 Redirect
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleForgotPassword = () => {
