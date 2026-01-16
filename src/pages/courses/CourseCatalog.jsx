@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Search, Filter, X, BookOpen, Clock, Users, Star, ChevronRight, TrendingUp, Target, Award } from "lucide-react";
+import { Search, Filter, X, BookOpen, Target, Award } from "lucide-react";
+import { coursesData } from "../../data/courses";
 
 const categories = [
   { id: "semua", name: "Semua Kategori" },
@@ -19,123 +20,19 @@ const difficultyLevels = [
   { id: "lanjutan", name: "Lanjutan", color: "bg-red-100 text-red-800" },
 ];
 
-const sortOptions = [
-  { id: "popular", name: "Paling Populer" },
-  { id: "rating", name: "Rating Tertinggi" },
-  { id: "terbaru", name: "Terbaru" },
-  { id: "durasi-pendek", name: "Durasi Terpendek" },
-  { id: "durasi-panjang", name: "Durasi Terpanjang" },
-];
-
-// Mock data - nanti diganti dengan API
-const mockCourses = [
-  {
-    id: 1,
-    title: "Pengantar Ekonomi Makro",
-    description: "Memahami konsep dasar ekonomi makro seperti GDP, inflasi, pengangguran, dan kebijakan fiskal.",
-    category: "makro",
-    difficulty: "pemula",
-    duration: "4 jam",
-    students: 1250,
-    rating: 4.8,
-    lessons: 12,
-    instructor: "Prof. Ahmad Fauzi",
-    image: "https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?w=400&h=250&fit=crop",
-    featured: true,
-    price: 0,
-  },
-  {
-    id: 2,
-    title: "Analisis Pasar & Permintaan",
-    description: "Pelajari bagaimana pasar bekerja, kurva permintaan-penawaran, dan elastisitas.",
-    category: "mikro",
-    difficulty: "pemula",
-    duration: "3 jam",
-    students: 890,
-    rating: 4.7,
-    lessons: 10,
-    instructor: "Dr. Sarah Wijaya",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-    featured: true,
-    price: 0,
-  },
-  {
-    id: 3,
-    title: "Perdagangan Internasional",
-    description: "Memahami teori perdagangan internasional, tarif, kuota, dan organisasi perdagangan dunia.",
-    category: "internasional",
-    difficulty: "menengah",
-    duration: "5 jam",
-    students: 750,
-    rating: 4.9,
-    lessons: 15,
-    instructor: "Budi Santoso, M.Ec",
-    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=250&fit=crop",
-    featured: false,
-    price: 199000,
-  },
-  {
-    id: 4,
-    title: "Kebijakan Moneter & Bank Sentral",
-    description: "Pelajari peran bank sentral, instrumen kebijakan moneter, dan pengendalian inflasi.",
-    category: "moneter",
-    difficulty: "menengah",
-    duration: "6 jam",
-    students: 620,
-    rating: 4.6,
-    lessons: 18,
-    instructor: "Dr. Maya Dewi",
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=250&fit=crop",
-    featured: true,
-    price: 0,
-  },
-  {
-    id: 5,
-    title: "Ekonomi Perilaku: Psikologi dalam Ekonomi",
-    description: "Eksplorasi bagaimana psikologi mempengaruhi keputusan ekonomi individu dan pasar.",
-    category: "perilaku",
-    difficulty: "lanjutan",
-    duration: "7 jam",
-    students: 480,
-    rating: 4.9,
-    lessons: 20,
-    instructor: "Prof. Rina Kartika",
-    image: "https://images.unsplash.com/photo-1551836026-d5c2c5af78e4?w=400&h=250&fit=crop",
-    featured: false,
-    price: 299000,
-  },
-  {
-    id: 6,
-    title: "Ekonomi Pembangunan Berkelanjutan",
-    description: "Konsep pembangunan berkelanjutan, indikator pembangunan, dan strategi pengentasan kemiskinan.",
-    category: "pembangunan",
-    difficulty: "lanjutan",
-    duration: "8 jam",
-    students: 350,
-    rating: 4.7,
-    lessons: 22,
-    instructor: "Dr. Agus Setiawan",
-    image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=400&h=250&fit=crop",
-    featured: false,
-    price: 249000,
-  },
-];
-
 const CourseCatalog = () => {
-  const [courses, setCourses] = useState(mockCourses);
-  const [filteredCourses, setFilteredCourses] = useState(mockCourses);
+  const [courses, setCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("semua");
   const [selectedLevel, setSelectedLevel] = useState("semua");
-  const [sortBy, setSortBy] = useState("popular");
 
   useEffect(() => {
-    // Simulasi fetch data dari API
     setIsLoading(true);
     setTimeout(() => {
-      setCourses(mockCourses);
-      setFilteredCourses(mockCourses);
+      setCourses(coursesData);
+      setFilteredCourses(coursesData);
       setIsLoading(false);
     }, 500);
   }, []);
@@ -146,7 +43,7 @@ const CourseCatalog = () => {
     // Filter pencarian
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      result = result.filter((course) => course.title.toLowerCase().includes(query) || course.description.toLowerCase().includes(query) || course.instructor.toLowerCase().includes(query));
+      result = result.filter((course) => course.title.toLowerCase().includes(query) || course.description.toLowerCase().includes(query));
     }
 
     // Filter kategori
@@ -159,33 +56,13 @@ const CourseCatalog = () => {
       result = result.filter((course) => course.difficulty === selectedLevel);
     }
 
-    // Sorting
-    switch (sortBy) {
-      case "popular":
-        result.sort((a, b) => b.students - a.students);
-        break;
-      case "rating":
-        result.sort((a, b) => b.rating - a.rating);
-        break;
-      case "terbaru":
-        result.sort((a, b) => b.id - a.id);
-        break;
-      case "durasi-pendek":
-        result.sort((a, b) => parseInt(a.duration) - parseInt(b.duration));
-        break;
-      case "durasi-panjang":
-        result.sort((a, b) => parseInt(b.duration) - parseInt(a.duration));
-        break;
-    }
-
     setFilteredCourses(result);
-  }, [courses, searchQuery, selectedCategory, selectedLevel, sortBy]);
+  }, [courses, searchQuery, selectedCategory, selectedLevel]);
 
   const clearFilters = () => {
     setSearchQuery("");
     setSelectedCategory("semua");
     setSelectedLevel("semua");
-    setSortBy("popular");
   };
 
   const hasActiveFilters = searchQuery || selectedCategory !== "semua" || selectedLevel !== "semua";
@@ -211,37 +88,13 @@ const CourseCatalog = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Cari materi, instruktur, atau topik..."
+                  placeholder="Cari materi atau topik..."
                   className="block w-full pl-10 pr-4 py-3 rounded-full border-0 focus:ring-2 focus:ring-purple-500 text-gray-900 placeholder-gray-500"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="py-8 px-4 sm:px-6 lg:px-8 bg-white border-b">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { number: "50+", label: "Modul Ekonomi", icon: BookOpen },
-              { number: "200+", label: "Jam Pembelajaran", icon: Clock },
-              { number: "10,000+", label: "Pembelajar", icon: Users },
-              { number: "4.8", label: "Rating Rata-rata", icon: Star },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="p-2 rounded-lg bg-purple-100 text-purple-600">
-                    <stat.icon size={20} />
-                  </div>
-                </div>
-                <div className="text-2xl font-bold text-gray-900">{stat.number}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -264,8 +117,8 @@ const CourseCatalog = () => {
             )}
           </div>
 
-          {/* Filters Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {/* Filters */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Category Filter */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Kategori Materi</label>
@@ -279,36 +132,6 @@ const CourseCatalog = () => {
                     {category.name}
                   </button>
                 ))}
-              </div>
-            </div>
-
-            {/* Difficulty Filter */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Tingkat Kesulitan</label>
-              <div className="flex flex-wrap gap-2">
-                {difficultyLevels.map((level) => (
-                  <button
-                    key={level.id}
-                    onClick={() => setSelectedLevel(level.id)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedLevel === level.id ? level.color : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-                  >
-                    {level.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Sort Filter */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Urutkan Berdasarkan</label>
-              <div className="relative">
-                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                  {sortOptions.map((option) => (
-                    <option key={option.id} value={option.id}>
-                      {option.name}
-                    </option>
-                  ))}
-                </select>
               </div>
             </div>
           </div>
@@ -335,7 +158,7 @@ const CourseCatalog = () => {
           {/* Loading State */}
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(6)].map((_, i) => (
+              {[...Array(3)].map((_, i) => (
                 <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-pulse">
                   <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
                   <div className="h-4 bg-gray-200 rounded mb-2"></div>
@@ -392,13 +215,12 @@ const CourseCatalog = () => {
           <div className="mt-16 bg-linear-to-r from-purple-50 to-blue-50 rounded-2xl p-8 text-center">
             <div className="max-w-2xl mx-auto">
               <Award className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Tidak Menemukan yang Anda Cari?</h3>
-              <p className="text-gray-600 mb-6">Bergabunglah dengan komunitas kami dan dapatkan akses ke lebih banyak materi premium</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Login dulu ya, supaya bisa akses materi belajarnya 😊</h3>
+              <p className="text-gray-600 mb-6">Masuk ke akun Anda untuk melanjutkan pembelajaran dan mengakses materi lengkap kami.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/register" className="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors">
                   Daftar Gratis
                 </Link>
-                <button className="px-6 py-3 border border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-50 transition-colors">Request Materi</button>
               </div>
             </div>
           </div>
@@ -408,7 +230,7 @@ const CourseCatalog = () => {
   );
 };
 
-// Course Card Component
+// Course Card Component - Disederhanakan
 const CourseCard = ({ course, featured = false }) => {
   const difficultyColors = {
     pemula: "bg-green-100 text-green-800",
@@ -438,34 +260,27 @@ const CourseCard = ({ course, featured = false }) => {
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-purple-600 font-medium">{categories.find((cat) => cat.id === course.category)?.name}</span>
-          <div className="flex items-center text-yellow-500">
-            <Star size={14} className="fill-current" />
-            <span className="ml-1 text-sm font-medium">{course.rating}</span>
-          </div>
         </div>
 
         <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">{course.title}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">{course.description}</p>
 
         <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-gray-500">
-            <Clock size={14} className="mr-2" />
-            <span>
-              {course.duration} • {course.lessons} pelajaran
-            </span>
+          <div className="text-sm text-gray-700">
+            <span className="font-medium">Instruktur:</span> {course.instructor}
           </div>
-          <div className="flex items-center text-sm text-gray-500">
-            <Users size={14} className="mr-2" />
-            <span>{course.students.toLocaleString()} siswa</span>
+          <div className="text-sm text-gray-700">
+            <span className="font-medium">Jumlah Artikel:</span> {course.content.length}
           </div>
-          <div className="text-sm text-gray-700 font-medium">Instruktur: {course.instructor}</div>
+          <div className="text-sm text-gray-700">
+            <span className="font-medium">Materi PDF:</span> {course.resources.length} file
+          </div>
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
           <div>{course.price === 0 ? <span className="text-lg font-bold text-green-600">Gratis</span> : <span className="text-lg font-bold text-gray-900">Rp {course.price.toLocaleString()}</span>}</div>
-          <Link to={`/course/${course.id}`} className="flex items-center text-purple-600 hover:text-purple-700 font-medium text-sm">
+          <Link to={`/Course/${course.id}`} className="flex items-center text-purple-600 hover:text-purple-700 font-medium text-sm">
             Lihat Detail
-            <ChevronRight size={16} className="ml-1" />
           </Link>
         </div>
       </div>

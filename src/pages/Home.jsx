@@ -43,12 +43,12 @@ export default function Home() {
         <div className="py-8 px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-7xl mx-auto">
             <a
-              href="/demo"
+              href="/register"
               className="inline-flex items-center justify-center px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               Mulai Belajar
               <span className="ml-2">→</span>
-              <span className="ml-2 text-blue-100 bg-white/20 px-3 py-1 rounded-full text-sm">Link Demo</span>
+              <span className="ml-2 text-blue-100 bg-white/20 px-3 py-1 rounded-full text-sm">Registrasi Sekarang</span>
             </a>
           </div>
         </div>

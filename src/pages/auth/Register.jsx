@@ -77,14 +77,14 @@ const Register = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1 }} className="flex justify-center items-center mb-4">
-            <div className="p-3 bg-linear-to-br from-purple-500 to-indigo-600 rounded-2xl shadow-lg">
+            <div className="p-3 bg-linear-to-br from-purple-800 to-indigo-7 00 rounded-2xl shadow-lg">
               <BookOpen className="text-white w-8 h-8" />
             </div>
           </motion.div>
           <h1 className="text-3xl font-bold bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">
             Edu<span className="text-purple-600">konomi</span>
           </h1>
-          <p className="text-gray-500 text-sm">Bergabunglah dengan komunitas pembelajaran terbaik</p>
+          <p className="text-gray-500 text-sm">Mari tumbuh dan menjadi bagian dari kami hari ini </p>
         </div>
 
         {/* Error & Success */}

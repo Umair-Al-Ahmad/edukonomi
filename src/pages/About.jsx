@@ -103,21 +103,6 @@ const About = () => {
                 </div>
               </div>
             </section>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
-                  <div className="flex items-center justify-center mb-3">
-                    <div className="p-3 rounded-full bg-purple-100 text-purple-600">
-                      <stat.icon size={24} />
-                    </div>
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{stat.number}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -207,7 +192,7 @@ const About = () => {
               <div className="p-3 rounded-xl bg-white/20 backdrop-blur-sm mr-4">
                 <GraduationCap size={32} />
               </div>
-              <h2 className="text-3xl font-bold">Bergabung dengan Komunitas Kami</h2>
+              <h2 className="text-3xl font-bold">Mari Bergabung dengan Kami</h2>
             </div>
             <p className="text-lg text-purple-100 mb-8 max-w-2xl mx-auto">Mulai perjalanan belajar ekonomi Anda hari ini dan dapatkan akses ke konten premium, quiz interaktif, dan sertifikasi yang diakui.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
